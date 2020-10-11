@@ -14,6 +14,9 @@ import {
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
+import SvgArrowBack from '../assets/images/arrow_back_ios-24px.svg';
+import SvgMenu from '../assets/images/menu-24px.svg';
+
 const BooksOverview = ({ navigation }) => {
   const dispatch = useDispatch();
   const message = useSelector(state => state.test.message);
@@ -29,6 +32,9 @@ const BooksOverview = ({ navigation }) => {
           title="Go to Details"
           onPress={() => navigation.navigate('BookDetails')}
         />
+
+        <SvgArrowBack width={24} height={24} />
+        <SvgMenu width={24} height={24} />
 
         <Button
           title="Set"
