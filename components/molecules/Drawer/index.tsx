@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { Color } from '../../styles/theme';
+import { Color, Opacity } from '../../styles/theme';
 
 import Composition, {
   LayoutXStartYStart,
@@ -54,6 +54,7 @@ const Drawer = ({ navigation, isVisible, onDismiss }: IDrawer) => {
       <TouchableOpacity
         style={styles.touchableOpacity}
         onPress={onDismiss}
+        activeOpacity={Opacity.Opaque}
       />
 
       <View style={styles.view}>
