@@ -7,7 +7,7 @@ import {
 
 import { Size, Color } from '../../styles/theme';
 
-import TextInput, { TextInputValidationScheme } from '../../atoms/TextInput';
+import TextInput from '../../atoms/TextInput';
 
 export interface IHeaderRight {
 }
@@ -23,12 +23,10 @@ const HeaderRight = ({}: IHeaderRight) => {
   return (
     <View style={styles.container}>
       <TextInput
-        validationScheme={TextInputValidationScheme.None}
-        placeholderTextColor={Color.Black85}
         keyboardType="default"
         placeholder="Search..."
         color={Color.Black}
-        borderColor={Color.White}
+        placeholderTextColor={Color.Black40}
       />
     </View>
   );
