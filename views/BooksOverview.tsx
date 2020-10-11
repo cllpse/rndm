@@ -21,6 +21,11 @@ import Composition, {
 
 const BooksOverview = ({ navigation }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    /* ... */
+  });
+
   const message = useSelector(state => state.test.message);
 
   return (
