@@ -1,19 +1,24 @@
-export enum TestActionType {
-  Set = 'TEST_SET',
-  Unset = 'TEST_UNSET',
-  SetSuccess = 'TEST_SET_SUCCESS',
+export enum MockActionType {
+  Fetch = 'MOCK_FETCH',
+  FetchWorking = 'MOCK_FETCH_WORKING',
+  FetchComplete = 'MOCK_FETCH_COMPLETE',
+  FetchError = 'MOCK_FETCH_ERROR',
 };
 
-export const set = (message: string) => ({
-  type: TestActionType.Set,
+export const fetch = () => ({
+  type: MockActionType.Fetch,
+});
+
+export const fetchWorking = () => ({
+  type: MockActionType.FetchWorking,
+});
+
+export const fetchComplete = (message: string) => ({
+  type: MockActionType.FetchComplete,
   payload: message,
 });
 
-export const unset = () => ({
-  type: TestActionType.Unset,
-});
-
-export const setSuccess = (message: string) => ({
-  type: TestActionType.SetSuccess,
+export const fetchError = (message: string) => ({
+  type: MockActionType.FetchError,
   payload: message,
 });
