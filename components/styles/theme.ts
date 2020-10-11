@@ -11,6 +11,7 @@ export const SizeFactorial: number = (() => {
 export enum Color {
   Black = 'black',
   Black85 = '#000000D9',
+  Black40 = '#00000066',
   White = 'white',
   WhiteSmoke = 'whitesmoke',
   DarkGrey = '#212222',

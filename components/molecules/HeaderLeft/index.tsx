@@ -12,6 +12,7 @@ import Button, { ButtonType } from '../../atoms/Button';
 import SvgMenu from '../../../assets/images/menu-24px.svg';
 
 export interface IHeaderLeft {
+  onMenuButtonClick: () => void
 }
 
 const styles = StyleSheet.create({
@@ -22,13 +23,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const HeaderLeft = ({}: IHeaderLeft) => {
+const HeaderLeft = ({ onMenuButtonClick }: IHeaderLeft) => {
   return (
     <View style={styles.container}>
       <Button
         omitShadow={true}
         type={ButtonType.Solid}
-        onPress={() => {}}
+        onPress={onMenuButtonClick}
         colorBackground={Color.Transparent}
         colorForeground={Color.Black}
         icon={<SvgMenu />}
