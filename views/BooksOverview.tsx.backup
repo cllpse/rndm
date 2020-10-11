@@ -1,0 +1,111 @@
+import React from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { set, unset } from '../actions/test';
+
+import { Color } from '../components/styles/theme';
+
+import Button, { ButtonType } from '../components/atoms/Button';
+
+import Text, { TextType } from '../components/atoms/Text';
+
+import Composition, {
+  BackgroundColor,
+  BackgroundText,
+  LayoutXCenterYCenter,
+  LayoutXCenterYCenterScroll,
+  Spacer,
+  SpacerSize,
+  BackgroundCard,
+} from '../components/molecules/Composition';
+
+import SvgArrowBack from '../assets/images/arrow_back_ios-24px.svg';
+import SvgMenu from '../assets/images/menu-24px.svg';
+
+const BooksOverview = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const message = useSelector(state => state.test.message);
+
+  return (
+    <Composition
+      useSafeAreaView
+      explodeHeight
+    >
+      <BackgroundColor color={Color.Black85} />
+
+      <BackgroundText
+        text={`LOADING\nPLEASE\nWAIT`}
+        colorBackground={Color.White}
+        colorForeground={Color.WhiteSmoke}
+      />
+
+      <LayoutXCenterYCenterScroll>
+        <Text
+          type={TextType.HeadingSmall}
+          colorForeground={Color.Black85}
+        >
+          BooksOverview
+        </Text>
+
+        <Spacer size={SpacerSize.MediumVertical} />
+
+        <Text
+          type={TextType.Highlight}
+          colorForeground={Color.Black85}
+        >
+          Test Message: {message}
+        </Text>
+
+        <Spacer size={SpacerSize.MediumVertical} />
+
+        <Button
+          type={ButtonType.Solid}
+          onPress={() => navigation.navigate('BookDetails')}
+          colorBackground={Color.White}
+          colorForeground={Color.Black}
+          icon={<SvgArrowBack />}
+          title="Book Details"
+        />
+
+        <Spacer size={SpacerSize.MediumVertical} />
+
+        <Button
+          type={ButtonType.Solid}
+          onPress={() => dispatch(set('Hello Press!'))}
+          colorBackground={Color.Black}
+          colorForeground={Color.White}
+          title="SET"
+        />
+
+        <Spacer size={SpacerSize.MediumVertical} />
+
+        <SvgArrowBack width={24} height={24} />
+
+        <Spacer size={SpacerSize.MediumVertical} />
+
+        <SvgMenu width={24} height={24} />
+
+        <Composition>
+          <BackgroundCard color={Color.White} />
+
+          <LayoutXCenterYCenter>
+            <Spacer size={SpacerSize.MediumVertical} />
+
+            <Button
+              type={ButtonType.Solid}
+              onPress={() => dispatch(unset())}
+              colorBackground={Color.Black}
+              colorForeground={Color.White}
+              title="UNSET"
+            />
+
+            <Spacer size={SpacerSize.SmallVertical} />
+          </LayoutXCenterYCenter>
+        </Composition>
+      </LayoutXCenterYCenterScroll>
+    </Composition>
+  );
+};
+
+export default BooksOverview;

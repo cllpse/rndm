@@ -1,72 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { set, unset } from '../actions/test';
 
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Button
-} from 'react-native';
+import { Color } from '../components/styles/theme';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import Button, { ButtonType } from '../components/atoms/Button';
 
-import SvgArrowBack from '../assets/images/arrow_back_ios-24px.svg';
-import SvgMenu from '../assets/images/menu-24px.svg';
+import Text, { TextType } from '../components/atoms/Text';
+
+import Composition, {
+  BackgroundText,
+  LayoutXStartYStartScroll,
+  LayoutXCenterYCenter,
+  Spacer,
+  SpacerSize,
+  BackgroundCard,
+} from '../components/molecules/Composition';
 
 const BooksOverview = ({ navigation }) => {
   const dispatch = useDispatch();
   const message = useSelector(state => state.test.message);
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.body}>
-        <Text style={styles.text}>BooksOverview{message}</Text>
+    <Composition
+      useSafeAreaView
+      explodeHeight
+    >
+      <LayoutXStartYStartScroll>
+        <Composition>
+          <BackgroundCard color={Color.White} />
 
-        <Text style={styles.customFont}>BooksOverview{message}</Text>
-
-        <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('BookDetails')}
-        />
-
-        <SvgArrowBack width={24} height={24} />
-        <SvgMenu width={24} height={24} />
-
-        <Button
-          title="Set"
-          onPress={() => dispatch(set('Hello Press!'))}
-        />
-
-        <Button
-          title="Unset"
-          onPress={() => dispatch(unset())}
-        />
-      </View>
-    </ScrollView>
+          <LayoutXCenterYCenter>
+            <Spacer size={SpacerSize.LargeVertical} />
+            <Spacer size={SpacerSize.LargeVertical} />
+            <Spacer size={SpacerSize.LargeVertical} />
+          </LayoutXCenterYCenter>
+        </Composition>
+      </LayoutXStartYStartScroll>
+    </Composition>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Colors.lighter,
-  },
-
-  body: {
-    backgroundColor: Colors.white,
-  },
-
-  text: {
-    color: Colors.black,
-  },
-
-  customFont: {
-    color: Colors.black,
-    fontFamily: "SFProDisplay-Medium",
-  }
-});
 
 export default BooksOverview;

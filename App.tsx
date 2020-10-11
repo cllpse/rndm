@@ -17,6 +17,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BooksOverview from './views/BooksOverview';
 import BookDetails from './views/BookDetails';
 
+import HeaderLeft from './components/molecules/HeaderLeft';
+import HeaderRight from './components/molecules/HeaderRight';
+
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
@@ -37,8 +40,8 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="BooksOverview">
-          <Stack.Screen name="BooksOverview" component={BooksOverview} />
-          <Stack.Screen name="BookDetails" component={BookDetails} />
+          <Stack.Screen name="BooksOverview" component={BooksOverview} options={{ headerTitle: '', headerLeft: props => <HeaderLeft />, headerRight: props => <HeaderRight /> }} />
+          <Stack.Screen name="BookDetails" component={BookDetails} options={{ headerTitle: '', headerRight: props => <HeaderRight /> }} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
