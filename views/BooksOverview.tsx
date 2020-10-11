@@ -23,6 +23,8 @@ const BooksOverview = ({ navigation }) => {
       <View style={styles.body}>
         <Text style={styles.text}>BooksOverview{message}</Text>
 
+        <Text style={styles.customFont}>BooksOverview{message}</Text>
+
         <Button
           title="Go to Details"
           onPress={() => navigation.navigate('BookDetails')}
@@ -54,6 +56,11 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.black,
   },
+
+  customFont: {
+    color: Colors.black,
+    fontFamily: "SFProDisplay-Medium",
+  }
 });
 
 export default BooksOverview;
