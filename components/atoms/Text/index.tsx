@@ -24,7 +24,7 @@ export enum FontSize {
 }
 
 export enum LineHeight {
-  Paragraph = 16 * SizeFactorial,
+  Paragraph = 20 * SizeFactorial,
   Highlight = 24 * SizeFactorial,
   Heading = 64 * SizeFactorial,
   HeadingSmall = 40 * SizeFactorial,

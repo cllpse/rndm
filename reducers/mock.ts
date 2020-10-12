@@ -2,14 +2,10 @@ import produce from 'immer';
 
 import { ActionType } from '../actions/mock';
 
-const initialState = { data: null, error: null, isWorking: false };
+const initialState = { dataById: null, data: null, error: null, isWorking: false };
 
 export default (state = initialState, action) => produce(state, draft => {
   switch (action.type as ActionType) {
-    case ActionType.Fetch: {
-      break;
-    }
-
     case ActionType.FetchWorking: {
       draft.isWorking = true;
       break;
@@ -17,6 +13,11 @@ export default (state = initialState, action) => produce(state, draft => {
 
     case ActionType.FetchComplete: {
       draft.data = action.payload;
+      break;
+    }
+
+    case ActionType.FetchByIdComplete: {
+      draft.dataById = action.payload;
       break;
     }
 

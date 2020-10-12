@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react';
 
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetch } from '../actions/mock';
 
-import { Color, Size } from '../components/styles/theme';
+import { Color, Size, Opacity } from '../components/styles/theme';
 
 import Text, { TextType } from '../components/atoms/Text';
 
 import Composition, {
   BackgroundText,
   LayoutXStartYStart,
-  Spacer,
-  SpacerSize,
   BackgroundCard,
   BackgroundImage,
 } from '../components/molecules/Composition';
@@ -32,21 +30,35 @@ const styles = StyleSheet.create({
   },
 });
 
-const Card = ({ item }) => {
-  console.log('card', item);
+const Card = ({ item }, navigation ) => {
+  const onPress = () => {
+    navigation.navigate('BookDetails', { id: item.id });
+  }
+
   return (
     <View style={styles.card}>
-      <Composition explodeHeight>
-        <BackgroundCard color={Color.White} />
+      <TouchableOpacity
+        onPress={onPress}
+        activeOpacity={Opacity.Opaque}
+      >
+        <Composition explodeHeight>
+          <BackgroundCard color={Color.White} />
 
-        {/* <BackgroundImage source={require('../assets/images/poster.png')} /> */}
+          {/* <BackgroundImage source={require('../assets/images/poster.png')} /> */}
 
-        <LayoutXStartYStart>
-          <Text type={TextType.Highlight} colorForeground={Color.Black85}>
-            {item.title}
-          </Text>
-        </LayoutXStartYStart>
-      </Composition>
+          {/* <BackgroundText
+              text={`LOADING\nPLEASE WAIT`}
+              colorBackground={Color.White}
+              colorForeground={Color.WhiteSmoke}
+          /> */}
+
+          <LayoutXStartYStart>
+            <Text type={TextType.Highlight} colorForeground={Color.DarkGrey}>
+              {item.title}
+            </Text>
+          </LayoutXStartYStart>
+        </Composition>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -58,14 +70,14 @@ const BooksOverview = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(fetch());
-  }, [dispatch]);
+  }, []);
 
   return (
     <View style={styles.container}>
       <FlatList
         numColumns={2}
         data={data}
-        renderItem={Card}
+        renderItem={(item) => Card(item, navigation)}
         keyExtractor={item => item.id.toString()}
       />
     </View>

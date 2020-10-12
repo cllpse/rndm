@@ -13,8 +13,6 @@ function* fetchAsync() {
 
   yield delay(1000);
 
-  console.log('mockPayload length', mockPayload.data.results.length);
-
   yield put({ type: ActionType.FetchComplete.toString(), payload: mockPayload.data.results });
 }
 
@@ -22,4 +20,22 @@ export function* watchFetch() {
   console.log('watchFetch()');
 
   yield takeLatest(ActionType.Fetch.toString(), fetchAsync);
+}
+
+function* fetchByIdAsync(action) {
+  console.log(`fetchAsync(${action.payload})`);
+
+  yield put({ type: ActionType.FetchByIdComplete.toString(), payload: null });
+
+  yield put({ type: ActionType.FetchWorking.toString() });
+
+  yield delay(2000);
+
+  yield put({ type: ActionType.FetchByIdComplete.toString(), payload: mockPayload.data.results.filter(item => item.id === action.payload) });
+}
+
+export function* watchFetchById() {
+  console.log('watchFetchById()');
+
+  yield takeLatest(ActionType.FetchById.toString(), fetchByIdAsync);
 }
