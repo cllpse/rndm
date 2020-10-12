@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.Highlight,
     lineHeight: LineHeight.Highlight,
     width: '100%',
+    elevation: 3,
   },
 
   heading: {

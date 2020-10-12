@@ -86,6 +86,10 @@ const Drawer = ({ navigation, isVisible, onDismiss }: IDrawer) => {
     });
   }
 
+  if (zIndex === -1) {
+    return null;
+  }
+
   return (
     <View style={[ styles.container, { zIndex: zIndex }]}>
       <Animated.View style={[ styles.animatedViewOpacity, { opacity: opacityAnimation } ]}>

@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     borderRadius: Radius.Base,
+    elevation: 0,
   },
 });
 
