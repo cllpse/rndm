@@ -53,7 +53,7 @@ const BookDetails = ({ route, navigation }) => {
         <Spacer size={SpacerSize.MediumVertical} />
 
         <Text type={TextType.Paragraph} colorForeground={Color.DarkGrey}>
-           {data && `${data[0].description || ''}`}
+           {data && `${(data[0].description || '').replace(/<br>/ig, '\n\n')}`}
         </Text>
       </LayoutXStartYStart>
     </Composition>
