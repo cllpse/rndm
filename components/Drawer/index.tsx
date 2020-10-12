@@ -110,7 +110,7 @@ const Drawer = ({ navigation, isVisible, onDismiss }: IDrawer) => {
             <Text
               type={TextType.Highlight}
               colorForeground={Color.Black85}
-              textAlign={TextAlign.Start}
+              textAlign={TextAlign.Center}
             >
               Genres
             </Text>
