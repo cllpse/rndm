@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.Highlight,
     fontSize: FontSize.Highlight,
     lineHeight: LineHeight.Highlight,
+    width: '100%',
   },
 
   heading: {

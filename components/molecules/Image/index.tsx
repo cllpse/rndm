@@ -4,6 +4,7 @@ import {
   View,
   StyleSheet,
   Image as ImageShadowed,
+  ImageSourcePropType,
 } from 'react-native';
 
 import RequestState from '../RequestState';
@@ -21,7 +22,7 @@ export enum ImageRatio {
 }
 
 export interface IImage {
-  uri: string;
+  source: ImageSourcePropType;
   width: number;
   shape: ImageShape;
   ratio: ImageRatio;
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
 });
 
 const Image = ({
-  uri,
+  source,
   width,
   shape,
   ratio,
@@ -65,7 +66,7 @@ const Image = ({
     <View style={styleContainer}>
       {state === RequestState.Done && (
         <ImageShadowed
-          source={{ uri }}
+          source={source}
           style={styleDimensions}
         />
       )}
