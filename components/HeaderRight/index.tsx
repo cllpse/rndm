@@ -5,9 +5,9 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { Size, Color } from '../../styles/theme';
+import { Size, Color } from '../styles/theme';
 
-import TextInput from '../../atoms/TextInput';
+import TextInput from '../atoms/TextInput';
 
 export interface IHeaderRight {
 }

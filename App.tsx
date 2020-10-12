@@ -17,9 +17,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BooksOverview from './views/BooksOverview';
 import BookDetails from './views/BookDetails';
 
-import HeaderLeft from './components/molecules/HeaderLeft';
-import HeaderRight from './components/molecules/HeaderRight';
-import Drawer from './components/molecules/Drawer';
+import HeaderLeft from './components/HeaderLeft';
+import HeaderRight from './components/HeaderRight';
+import Drawer from './components/Drawer';
 
 const sagaMiddleware = createSagaMiddleware();
 
