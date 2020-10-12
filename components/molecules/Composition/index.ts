@@ -5,6 +5,7 @@ export default Composition;
 export { BackgroundColor } from './BackgroundColor';
 export { BackgroundText } from './BackgroundText';
 export { BackgroundCard } from './BackgroundCard';
+export { BackgroundImage } from './BackgroundImage';
 
 export { LayoutXCenterYCenter } from './LayoutXCenterYCenter';
 export { LayoutXCenterYCenterScroll } from './LayoutXCenterYCenterScroll';

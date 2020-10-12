@@ -2,9 +2,12 @@ import { all } from 'redux-saga/effects';
 
 import { watchSet, watchUnset } from './test';
 
-export function* root() {
+import { watchFetch } from './mock';
+
+export function* sagas() {
   yield all([
     watchSet(),
     watchUnset(),
+    watchFetch(),
   ]);
 }

@@ -1,22 +1,22 @@
 import produce from 'immer';
 
-import { TestActionType } from '../actions/test';
+import { ActionType } from '../actions/test';
 
 const initialState = { message: '' };
 
 export default (state = initialState, action) => produce(state, draft => {
-  switch (action.type as TestActionType) {
-    case TestActionType.Set: {
+  switch (action.type as ActionType) {
+    case ActionType.Set: {
       draft.message = action.payload;
       break;
     }
 
-    case TestActionType.Unset: {
+    case ActionType.Unset: {
       draft.message = '';
       break;
     }
 
-    case TestActionType.SetSuccess: {
+    case ActionType.SetSuccess: {
       draft.message = action.payload;
       break;
     }

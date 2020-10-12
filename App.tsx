@@ -8,8 +8,8 @@ import createSagaMiddleware from 'redux-saga';
 
 import { Provider } from 'react-redux'
 
-import { test } from './reducers/index';
-import { root } from './sagas/index';
+import * as reducers from './reducers/index';
+import { sagas } from './sagas/index';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -24,14 +24,14 @@ import Drawer from './components/Drawer';
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
-  combineReducers({ test }),
+  combineReducers(reducers),
   applyMiddleware(sagaMiddleware)
 );
 
-sagaMiddleware.run(root);
+sagaMiddleware.run(sagas);
 
 store.subscribe(() => {
-  console.log('store changed', store.getState());
+  // console.log('store changed', store.getState());
 });
 
 const Stack = createStackNavigator();
@@ -43,7 +43,10 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <NavigationContainer ref={refNavigationContainer} onReady={() => { setRefNavigationContainerReady(true); }}>
+      <NavigationContainer
+        ref={refNavigationContainer}
+        onReady={() => { setRefNavigationContainerReady(true); }}
+      >
         <Stack.Navigator initialRouteName="BooksOverview">
           <Stack.Screen
             name="BooksOverview"

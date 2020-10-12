@@ -1,25 +1,27 @@
 import { takeLatest, put } from 'redux-saga/effects';
 
-import { TestActionType } from '../actions/test';
+import { ActionType } from '../actions/test';
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
 function* setAsync() {
   yield delay(1000);
-  console.log('setAsync()', TestActionType.SetSuccess.toString());
-  yield put({ type: TestActionType.SetSuccess.toString(), payload: 'setAsync()' });
+
+  console.log('setAsync()', ActionType.SetSuccess.toString());
+
+  yield put({ type: ActionType.SetSuccess.toString(), payload: 'setAsync()' });
 }
 
 function* unsetAsync() {
   yield delay(1000);
+
   console.log('unsetAsync()');
 }
 
 export function* watchSet() {
-  console.log('ffs', TestActionType.Set.toString());
-  yield takeLatest(TestActionType.Set.toString(), setAsync);
+  yield takeLatest(ActionType.Set.toString(), setAsync);
 }
 
 export function* watchUnset() {
-  yield takeLatest(TestActionType.Unset.toString(), unsetAsync);
+  yield takeLatest(ActionType.Unset.toString(), unsetAsync);
 }

@@ -1,4 +1,4 @@
-export enum MockActionType {
+export enum ActionType {
   Fetch = 'MOCK_FETCH',
   FetchWorking = 'MOCK_FETCH_WORKING',
   FetchComplete = 'MOCK_FETCH_COMPLETE',
@@ -6,19 +6,19 @@ export enum MockActionType {
 };
 
 export const fetch = () => ({
-  type: MockActionType.Fetch,
+  type: ActionType.Fetch,
 });
 
 export const fetchWorking = () => ({
-  type: MockActionType.FetchWorking,
+  type: ActionType.FetchWorking,
 });
 
-export const fetchComplete = (message: string) => ({
-  type: MockActionType.FetchComplete,
-  payload: message,
+export const fetchComplete = (data: any) => ({
+  type: ActionType.FetchComplete,
+  payload: data,
 });
 
 export const fetchError = (message: string) => ({
-  type: MockActionType.FetchError,
+  type: ActionType.FetchError,
   payload: message,
 });

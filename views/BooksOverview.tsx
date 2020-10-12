@@ -1,50 +1,74 @@
 import React, { useEffect } from 'react';
 
+import { View, StyleSheet, FlatList } from 'react-native';
+
 import { useDispatch, useSelector } from 'react-redux';
 
-import { set, unset } from '../actions/test';
+import { fetch } from '../actions/mock';
 
-import { Color } from '../components/styles/theme';
-
-import Button, { ButtonType } from '../components/atoms/Button';
+import { Color, Size } from '../components/styles/theme';
 
 import Text, { TextType } from '../components/atoms/Text';
 
 import Composition, {
   BackgroundText,
-  LayoutXStartYStartScroll,
-  LayoutXCenterYCenter,
+  LayoutXStartYStart,
   Spacer,
   SpacerSize,
   BackgroundCard,
+  BackgroundImage,
 } from '../components/molecules/Composition';
+
+const styles = StyleSheet.create({
+  container: {
+    padding: Size.BaseUnit
+  },
+
+  card: {
+    flex: 1,
+    flexGrow: 1,
+    margin: Size.BaseUnit,
+    height: Size.BaseUnit * 40,
+  },
+});
+
+const Card = ({ item }) => {
+  console.log('card', item);
+  return (
+    <View style={styles.card}>
+      <Composition explodeHeight>
+        <BackgroundCard color={Color.White} />
+
+        {/* <BackgroundImage source={require('../assets/images/poster.png')} /> */}
+
+        <LayoutXStartYStart>
+          <Text type={TextType.Highlight} colorForeground={Color.Black85}>
+            {item.title}
+          </Text>
+        </LayoutXStartYStart>
+      </Composition>
+    </View>
+  );
+};
 
 const BooksOverview = ({ navigation }) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    /* ... */
-  });
+  const data = useSelector(state => state.mock.data);
 
-  const message = useSelector(state => state.test.message);
+  useEffect(() => {
+    dispatch(fetch());
+  }, [dispatch]);
 
   return (
-    <Composition
-      useSafeAreaView
-      explodeHeight
-    >
-      <LayoutXStartYStartScroll>
-        <Composition>
-          <BackgroundCard color={Color.White} />
-
-          <LayoutXCenterYCenter>
-            <Spacer size={SpacerSize.LargeVertical} />
-            <Spacer size={SpacerSize.LargeVertical} />
-            <Spacer size={SpacerSize.LargeVertical} />
-          </LayoutXCenterYCenter>
-        </Composition>
-      </LayoutXStartYStartScroll>
-    </Composition>
+    <View style={styles.container}>
+      <FlatList
+        numColumns={2}
+        data={data}
+        renderItem={Card}
+        keyExtractor={item => item.id.toString()}
+      />
+    </View>
   );
 };
 
